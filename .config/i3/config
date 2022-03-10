@@ -95,9 +95,8 @@ bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -182,10 +181,23 @@ bar {
         status_command i3status
 }
 
-# Mine's:
+############### FN Controls ####################
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
-# Autostart:
-exec_always "setxkbmap -model pc104 -layout us,ru -variant ,, -option grp:alt_shift_toggle"
+
+
+###############  Autostart #####################
+exec_always "setxkbmap -layout us,ru"
+exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
 exec_always "feh --bg-fill $HOME/Pictures/wallpaper/current_wallpaper.png"
+exec_always "flameshot"
+exec --no-startup-id i3-msg 'workspace 3; exec kitty'
+assign [class="Brave-browser"] $ws1
+exec "brave-browser"
+assign [class="Code"] $ws2
+exec "code"
+assign [class="Telegram"] $ws4
+exec "telegram-desktop"
+# Sets currrent workspace
+exec i3-msg 'workspace 5'
 
