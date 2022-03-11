@@ -101,7 +101,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # motivate --no-colors | cowsay
-cowsay "\$HOME sweet \$HOME"
+#cowsay "\$HOME sweet \$HOME"
 export TERM=xterm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
