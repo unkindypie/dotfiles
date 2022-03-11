@@ -202,7 +202,7 @@ exec "telegram-desktop"
 # Sets currrent workspace
 exec i3-msg 'workspace 5'
 exec --no-startup-id picom
-exec_always --no-startup-id ~/.config/polybar/launch.sh &
+exec_always --no-startup-id bash ~/.config/polybar/launch.sh
 
 ############ Look ##########
 #set $ws1 "1:"
