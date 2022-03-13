@@ -200,7 +200,7 @@ exec "code"
 assign [class="Telegram"] $ws4
 exec "telegram-desktop"
 # Sets currrent workspace
-exec i3-msg 'workspace 5'
+exec i3-msg 'workspace 3'
 exec --no-startup-id picom
 exec_always --no-startup-id bash ~/.config/polybar/launch.sh
 

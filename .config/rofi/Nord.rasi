@@ -54,6 +54,7 @@ configuration {
     alternate-active-foreground: @active-foreground;
     active-background:           @background;
     selected-active-background:  rgba(76, 86, 106, 100%);
+    font: "Monaco,3270Medium Nerd Font Mono 14";
 }
 window {
     background-color: @background;
