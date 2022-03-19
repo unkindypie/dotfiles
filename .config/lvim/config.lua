@@ -149,8 +149,8 @@ lvim.builtin.treesitter.highlight.enabled = true
 lvim.plugins = {
     {"skanehira/docker.vim"},
     {"SmiteshP/nvim-gps"},
+    {"christoomey/vim-tmux-navigator"},
 }
-
 -- lvim.builtin.terminal.direction = 'horizontal'
 lvim.builtin.terminal.shell = '/usr/bin/zsh'
 -- lvim.builtin.terminal.size = 10

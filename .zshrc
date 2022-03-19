@@ -104,6 +104,10 @@ source $ZSH/oh-my-zsh.sh
 
 # motivate --no-colors | cowsay
 #cowsay "\$HOME sweet \$HOME"
-export TERM=xterm
+# export TERM=xterm
 export DENO_INSTALL="/home/maxb/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
