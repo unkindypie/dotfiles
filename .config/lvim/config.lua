@@ -11,8 +11,9 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
-lvim.transparent_window = false
+-- lvim.colorscheme = "onedarker"
+lvim.colorscheme = "tokyonight"
+lvim.transparent_window = true
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
@@ -58,9 +59,9 @@ lvim.keys.normal_mode["<Space>r"] = ":Telescope buffers<cr>"
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.dashboard.active = true
 lvim.builtin.notify.active = true
-lvim.builtin.terminal.active = true
+lvim.builtin.terminal.active = false
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
+lvim.builtin.nvimtree.show_icons.git = 1
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -147,9 +148,9 @@ lvim.builtin.treesitter.highlight.enabled = true
 --     },
 -- }
 lvim.plugins = {
-    {"skanehira/docker.vim"},
     {"SmiteshP/nvim-gps"},
     {"christoomey/vim-tmux-navigator"},
+    {"folke/tokyonight.nvim"},
 }
 -- lvim.builtin.terminal.direction = 'horizontal'
 lvim.builtin.terminal.shell = '/usr/bin/zsh'
@@ -202,3 +203,9 @@ linters.setup {
 }
 
 lvim.format_on_save = true
+
+vim.cmd "highlight NonText guibg=none"
+vim.cmd "highlight Normal guibg=none"
+vim.cmd "highlight clear CursorLineNR"
+vim.cmd('source ~/.config/lvim/init.vim')
+

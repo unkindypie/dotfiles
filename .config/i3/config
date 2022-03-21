@@ -180,13 +180,13 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 ###############  Autostart #####################
 exec_always "setxkbmap -layout us,ru"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
-exec_always "feh --bg-fill $HOME/Pictures/wallpaper/space.png"
+exec_always "feh --bg-fill $HOME/Pictures/wallpaper/japan.jpg"
 exec_always "flameshot"
-exec --no-startup-id i3-msg 'workspace 2; exec kitty lvim'
-exec --no-startup-id i3-msg 'workspace 3; exec kitty'
+exec --no-startup-id i3-msg 'workspace 2; exec kitty --directory "Desktop/node/nosis-backend"'
+# exec --no-startup-id i3-msg 'workspace 3; exec kitty'
 assign [class="Brave-browser"] $ws1
 exec "brave-browser"
-assign [class="Telegram"] $ws4
+assign [class="Telegram"] $ws3
 exec "telegram-desktop"
 # Sets currrent workspace
 exec i3-msg 'workspace 3'
