@@ -66,6 +66,9 @@ lvim.plugins = {
       "sindrets/diffview.nvim",
       event = "BufRead",
     },
+    {
+     "f-person/git-blame.nvim"
+    },
 }
 lvim.builtin.nvimtree.setup.view.auto_resize = true
 
@@ -121,5 +124,4 @@ linters.setup {
 vim.cmd "highlight NonText guibg=none"
 vim.cmd "highlight Normal guibg=none"
 vim.cmd "highlight clear CursorLineNR"
-vim.cmd('source ~/.config/lvim/init.vim')
-
+-- vim.cmd('source ~/.config/lvim/init.vim')
