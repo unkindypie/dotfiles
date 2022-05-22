@@ -69,6 +69,20 @@ lvim.plugins = {
     {
      "f-person/git-blame.nvim"
     },
+    {
+      "windwp/nvim-spectre",
+      event = "BufEnter",
+      config = function()
+        require("spectre").setup({
+        mapping={
+          ['send_to_qf'] = {
+            map = "<leader>Q",
+            cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
+            desc = "send all item to quickfix"
+        }},
+      })
+      end,
+    },
 }
 lvim.builtin.nvimtree.setup.view.auto_resize = true
 
@@ -79,7 +93,10 @@ lvim.builtin.which_key.mappings["S"]= {
     l = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Restore last session" },
     Q = { "<cmd>lua require('persistence').stop()<cr>", "Quit without saving session" },
 }
-
+lvim.builtin.which_key.mappings["s"].s = {
+  "<cmd> lua require('spectre').open_file_search()<cr>",
+  "Find and Replace",
+}
 
 lvim.builtin.which_key.mappings["g"].d = { "<cmd>DiffviewOpen<CR>", "Open Diff" }
 lvim.builtin.which_key.mappings["g"].D = { "<cmd>DiffviewClose<CR>", "Close Diff" }
