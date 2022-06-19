@@ -83,24 +83,37 @@ lvim.plugins = {
       })
       end,
     },
+    {
+      "EthanJWright/vs-tasks.nvim"
+    },
 }
 lvim.builtin.nvimtree.setup.view.auto_resize = true
 
-
+-- Session keymaps
 lvim.builtin.which_key.mappings["S"]= {
     name = "Session",
     c = { "<cmd>lua require('persistence').load()<cr>", "Restore last session for current dir" },
     l = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Restore last session" },
     Q = { "<cmd>lua require('persistence').stop()<cr>", "Quit without saving session" },
 }
+-- Find and Replace keymaps
 lvim.builtin.which_key.mappings["s"].s = {
   "<cmd> lua require('spectre').open_file_search()<cr>",
   "Find and Replace",
 }
-
+-- Git diff view keymaps
 lvim.builtin.which_key.mappings["g"].d = { "<cmd>DiffviewOpen<CR>", "Open Diff" }
 lvim.builtin.which_key.mappings["g"].D = { "<cmd>DiffviewClose<CR>", "Close Diff" }
-
+-- vs-tasks keymaps
+lvim.builtin.which_key.mappings['t'] = {
+  name = "Tasks",
+  a = {
+  "<cmd>lua require('telescope').extensions.vstask.tasks()<cr>", "Tasks"
+  },
+  i = {
+  "<cmd>lua require('telescope').extensions.vstask.inputs()<cr>", "Task Inputs"
+  }
+}
 
 
 
@@ -112,7 +125,7 @@ lvim.builtin.lualine.sections.lualine_c = { { gps.get_location, cond = gps.is_av
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   {
-    exe = "prettier",
+    exe = "prettierd",
     filetypes = {
       "javascriptreact",
       "javascript",
@@ -136,7 +149,12 @@ linters.setup {
     },
   },
 }
-
+linters.setup {
+  {
+    command = "codespell",
+    filetypes = { "javascript", "python" },
+  },
+}
 
 vim.cmd "highlight NonText guibg=none"
 vim.cmd "highlight Normal guibg=none"

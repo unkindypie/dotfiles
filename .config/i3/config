@@ -98,6 +98,9 @@ bindsym $mod+Shift+space floating toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
+# move focused workspace between monitors
+bindsym $mod+Ctrl+greater move workspace to output right
+bindsym $mod+Ctrl+less move workspace to output left
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -195,6 +198,7 @@ exec "telegram-desktop"
 exec i3-msg 'workspace 3'
 exec --no-startup-id picom
 exec_always --no-startup-id bash ~/.config/polybar/launch.sh
+exec --no-startup-id espeak "Greetings, my Lord."
 
 ############ Look ##########
 #set $ws1 "1:"

@@ -120,7 +120,7 @@
     # print a notification on startup
     # This is mainly for error detection, since dbus (re-)starts dunst
     # automatically after a crash.
-    startup_notification = true
+    startup_notification = false
 
     # dmenu path
     dmenu = /usr/bin/dmenu -p dunst:
@@ -129,8 +129,9 @@
     browser = /usr/bin/brave-browser
 
 [frame]
-    width = 2
+    width = 5
     color = "#3B4252"
+    corner_radius = 180
 
 [shortcuts]
     # shortcuts are specified as [modifier+][modifier+]...key
@@ -188,11 +189,11 @@
 
 #[espeak]
 #    summary = "*"
-#    script = dunst_espeak.sh
+#    script = "~/.config/dunst/dunst_espeak.sh"
 
 #[script-test]
 #    summary = "*script*"
-#    script = dunst_test.sh
+#    script = "~/.config/dunst/dunst_test.sh"
 
 #[ignore]
 ## This notification will not be displayed
