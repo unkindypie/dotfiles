@@ -37,7 +37,6 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
-
 lvim.plugins = {
     {"SmiteshP/nvim-gps"},
     {"christoomey/vim-tmux-navigator"},
@@ -86,9 +85,18 @@ lvim.plugins = {
     {
       "EthanJWright/vs-tasks.nvim"
     },
+    {
+      "tikhomirov/vim-glsl"
+    },
 }
 lvim.builtin.nvimtree.setup.view.auto_resize = true
-
+lvim.builtin.bufferline.options.offsets = {
+  {
+    filetype = "NvimTree",
+    text = "",
+    text_align = "left"
+  }
+}
 -- Session keymaps
 lvim.builtin.which_key.mappings["S"]= {
     name = "Session",

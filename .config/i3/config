@@ -186,7 +186,7 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 ###############  Autostart #####################
 exec_always "setxkbmap -layout us,ru"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
-exec_always "feh --bg-fill $HOME/Pictures/wallpaper/an1.jpg"
+exec_always "feh --bg-fill $HOME/Pictures/wallpaper/an12.jpg"
 exec_always "flameshot"
 exec --no-startup-id i3-msg 'workspace 2; exec kitty --directory "Desktop/node/nosis-backend"'
 # exec --no-startup-id i3-msg 'workspace 3; exec kitty'
