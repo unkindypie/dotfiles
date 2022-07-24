@@ -36,6 +36,7 @@ lvim.builtin.treesitter.ensure_installed = {
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
+lvim.builtin.treesitter.rainbow.enable = true
 
 lvim.plugins = {
 	-- ##### Appearance #####
@@ -50,6 +51,19 @@ lvim.plugins = {
 		event = "BufEnter",
 		config = function()
 			require("todo-comments").setup()
+		end,
+	},
+	{
+		"p00f/nvim-ts-rainbow",
+	},
+	{
+		"romgrk/nvim-treesitter-context",
+		config = function()
+			require("treesitter-context").setup({
+				enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+				throttle = true, -- Throttles plugin updates (may improve performance)
+				max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+			})
 		end,
 	},
 	-- ##### Misc #####
@@ -88,7 +102,7 @@ lvim.plugins = {
 	-- #####  Git #####
 	{
 		"sindrets/diffview.nvim",
-		event = "BufRead",
+		-- event = "BufRead",
 	},
 	{
 		"f-person/git-blame.nvim",
@@ -123,9 +137,15 @@ lvim.builtin.which_key.mappings["s"].s = {
 	"<cmd> lua require('spectre').open_file_search()<cr>",
 	"Find and Replace",
 }
--- Git diff view keymaps
+-- Git related keymaps
 lvim.builtin.which_key.mappings["g"].d = { "<cmd>DiffviewOpen<CR>", "Open Diff" }
 lvim.builtin.which_key.mappings["g"].D = { "<cmd>DiffviewClose<CR>", "Close Diff" }
+lvim.builtin.which_key.mappings["g"].s = { "<cmd>Neogit<CR>", "Status" }
+require("neogit").setup({
+	integrations = {
+		diffview = true,
+	},
+})
 -- vs-tasks keymaps
 lvim.builtin.which_key.mappings["t"] = {
 	name = "Tasks",
