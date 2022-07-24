@@ -107,6 +107,8 @@ source $ZSH/oh-my-zsh.sh
 # export TERM=xterm
 export DENO_INSTALL="/home/maxb/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+export VISUAL=lvim;
+export EDITOR=lvim;
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
