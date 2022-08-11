@@ -2,8 +2,8 @@
 lvim.log.level = "warn"
 lvim.format_on_save = true
 -- lvim.colorscheme = "tokyonight"
-lvim.colorscheme = "catppuccin"
-lvim.transparent_window = true
+lvim.colorscheme = "gruvbox"
+lvim.transparent_window = false
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -42,6 +42,7 @@ lvim.plugins = {
 	-- ##### Appearance #####
 	{ "folke/tokyonight.nvim" },
 	{ "catppuccin/nvim" },
+	{ "morhetz/gruvbox" },
 	{
 		"danilamihailov/beacon.nvim",
 	},
@@ -56,16 +57,16 @@ lvim.plugins = {
 	{
 		"p00f/nvim-ts-rainbow",
 	},
-	{
-		"romgrk/nvim-treesitter-context",
-		config = function()
-			require("treesitter-context").setup({
-				enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-				throttle = true, -- Throttles plugin updates (may improve performance)
-				max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-			})
-		end,
-	},
+	-- {
+	-- 	"romgrk/nvim-treesitter-context",
+	-- 	config = function()
+	-- 		require("treesitter-context").setup({
+	-- 			enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+	-- 			throttle = true, -- Throttles plugin updates (may improve performance)
+	-- 			max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+	-- 		})
+	-- 	end,
+	-- },
 	-- ##### Misc #####
 	{
 		"folke/persistence.nvim",
