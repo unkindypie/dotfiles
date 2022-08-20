@@ -15,9 +15,6 @@ lvim.keys.normal_mode["<Space>r"] = ":Telescope buffers<cr>"
 lvim.builtin.alpha.active = true
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = false
-lvim.builtin.nvimtree.setup.view.side = "left"
--- lvim.builtin.nvimtree.show_icons.git = 1
--- lvim.builtin.nvimtree.setup.auto_close = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -68,6 +65,23 @@ lvim.plugins = {
 	-- 	end,
 	-- },
 	-- ##### Misc #####
+	-- { "github/copilot.vim" },
+	{
+		"zbirenbaum/copilot.lua",
+		event = "InsertEnter",
+		config = function()
+			vim.defer_fn(function()
+				require("copilot").setup({
+					plugin_manager_path = get_runtime_dir() .. "/site/pack/packer",
+					cmp = {
+						enabled = true,
+						method = "getCompletionsCycling",
+					},
+				})
+			end, 100)
+		end,
+	},
+	{ "zbirenbaum/copilot-cmp", after = { "copilot.lua", "nvim-cmp" } },
 	{
 		"folke/persistence.nvim",
 		-- event = "BufReadPre", -- this will only start session saving when an actual file was opened
@@ -77,6 +91,22 @@ lvim.plugins = {
 			require("persistence").setup({
 				dir = vim.fn.expand(vim.fn.stdpath("config") .. "/session/"),
 				options = { "buffers", "curdir", "tabpages", "winsize" },
+			})
+		end,
+	},
+	{
+		"ethanholz/nvim-lastplace",
+		event = "BufRead",
+		config = function()
+			require("nvim-lastplace").setup({
+				lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+				lastplace_ignore_filetype = {
+					"gitcommit",
+					"gitrebase",
+					"svn",
+					"hgcommit",
+				},
+				lastplace_open_folds = true,
 			})
 		end,
 	},
@@ -118,7 +148,10 @@ lvim.plugins = {
 }
 
 --- Nvim-tree configs
-lvim.builtin.nvimtree.setup.view.auto_resize = true
+-- lvim.builtin.nvimtree.setup.view.auto_resize = true
+-- lvim.builtin.nvimtree.setup.view.side = "left"
+-- lvim.builtin.nvimtree.show_icons.git = 1
+-- lvim.builtin.nvimtree.setup.auto_close = true
 lvim.builtin.bufferline.options.offsets = {
 	{
 		filetype = "NvimTree",
@@ -217,6 +250,11 @@ local opts = {
 
 require("lvim.lsp.manager").setup("tsserver", opts)
 
+-- Copilot
+lvim.builtin.cmp.formatting.source_names["copilot"] = "Copilot 🤖"
+table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
+
+-- Misc
 vim.cmd("highlight NonText guibg=none")
 vim.cmd("highlight Normal guibg=none")
 vim.cmd("highlight clear CursorLineNR")
