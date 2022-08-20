@@ -16,7 +16,7 @@ lvim.builtin.alpha.active = true
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = false
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 1
+-- lvim.builtin.nvimtree.show_icons.git = 1
 -- lvim.builtin.nvimtree.setup.auto_close = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
@@ -204,7 +204,19 @@ linters.setup({
 	},
 })
 
+-- Overriding tssever confis to make it use absolute imports like a man
+local opts = {
+	-- https://github.com/typescript-language-server/typescript-language-server#initializationoptions
+	init_options = {
+		preferences = {
+			importModuleSpecifierPreference = "non-relative",
+		},
+	},
+	single_file_support = true,
+}
+
+require("lvim.lsp.manager").setup("tsserver", opts)
+
 vim.cmd("highlight NonText guibg=none")
 vim.cmd("highlight Normal guibg=none")
 vim.cmd("highlight clear CursorLineNR")
--- vim.cmd('source ~/.config/lvim/init.vim')
