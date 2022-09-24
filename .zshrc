@@ -72,7 +72,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # Add wisely, as too many plugins slow down shell startup.
 export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
-plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting zsh-nvm)
+plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting zsh-nvm z fzf)
 
 source $ZSH/oh-my-zsh.sh
 

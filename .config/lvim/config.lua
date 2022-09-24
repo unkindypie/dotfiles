@@ -141,7 +141,7 @@ lvim.plugins = {
 -- lvim.builtin.nvimtree.setup.view.auto_resize = true
 -- lvim.builtin.nvimtree.setup.view.side = "left"
 -- lvim.builtin.nvimtree.show_icons.git = 1
--- lvim.builtin.nvimtree.setup.auto_close = true
+lvim.builtin.nvimtree.setup.auto_reload_on_write = true
 lvim.builtin.bufferline.options.offsets = {
 	{
 		filetype = "NvimTree",
@@ -149,6 +149,7 @@ lvim.builtin.bufferline.options.offsets = {
 		text_align = "left",
 	},
 }
+lvim.builtin.notify.active = false
 -- Session keymaps
 lvim.builtin.which_key.mappings["S"] = {
 	name = "Session",
