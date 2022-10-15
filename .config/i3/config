@@ -186,8 +186,8 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 ###############  Autostart #####################
 exec_always "setxkbmap -layout us,ru"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
-# exec_always "feh --bg-fill $HOME/Pictures/wallpaper/nature/nature1.jpg"
-exec_always "feh --bg-fill $HOME/Pictures/wallpaper/Ilja_Jefimowitsch_Repin_-_Reply_of_the_Zaporozhian_Cossacks_-_Yorck.jpg"
+# exec_always "feh --bg-fill $HOME/Pictures/wallpaper/Ilja_Jefimowitsch_Repin_-_Reply_of_the_Zaporozhian_Cossacks_-_Yorck.jpg"
+exec_always "feh --bg-fill $HOME/Pictures/wallpaper/space.png"
 exec_always "flameshot"
 # exec --no-startup-id i3-msg 'workspace 2; exec kitty --directory "Desktop/node/nosis-backend"'
 assign [class="Brave-browser"] $ws1
@@ -195,8 +195,7 @@ exec "brave-browser"
 assign [class="Telegram"] $ws3
 exec "LD_PRELOAD=libjemalloc.so.2 telegram-desktop"
 # Sets currrent workspace
-# exec --no-startup-id i3-msg 'workspace 10; exec alacritty -e htop'
-exec --no-startup-id picom
+exec --no-startup-id picom --experimental-backends --backend glx
 exec_always --no-startup-id bash ~/.config/polybar/launch.sh
 
 exec --no-startup-id i3-msg 'workspace 2; exec alacritty --working-directory "Desktop/node/nosis-backend"'
@@ -205,12 +204,13 @@ exec i3-msg 'workspace 2'
 ### i3-gaps ###
 # Borders for windows
 for_window [class=".*"] border pixel 1
+for_window [class=".*"] border_radius 100
 
 # Gaps for i3bar
 for_window [class="i3bar"] gaps outer current set 10
 
 # Gaps
-gaps inner 10
+gaps inner 5
 gaps outer 4
 
 ### Topbar and color theme ###

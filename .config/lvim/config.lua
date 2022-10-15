@@ -3,7 +3,9 @@ lvim.log.level = "warn"
 lvim.format_on_save = true
 -- lvim.colorscheme = "tokyonight"
 lvim.colorscheme = "gruvbox"
-lvim.transparent_window = false
+vim.o.background = "dark" -- or "light" for light mode
+
+lvim.transparent_window = true
 
 -- Keymappings
 lvim.leader = "space"
@@ -37,7 +39,8 @@ lvim.plugins = {
 	-- ##### Appearance #####
 	{ "folke/tokyonight.nvim" },
 	{ "catppuccin/nvim" },
-	{ "morhetz/gruvbox" },
+	-- { "morhetz/gruvbox" },
+	{ "ellisonleao/gruvbox.nvim" },
 	{
 		"danilamihailov/beacon.nvim",
 	},
@@ -212,7 +215,7 @@ formatters.setup({
 local linters = require("lvim.lsp.null-ls.linters")
 linters.setup({
 	{
-		exe = "eslint",
+		exe = "eslint_d",
 		filetypes = {
 			"javascriptreact",
 			"javascript",
@@ -222,7 +225,7 @@ linters.setup({
 	},
 	{
 		command = "codespell",
-		filetypes = { "javascript", "python", "lua" },
+		filetypes = { "javascript", "python", "lua", "typescript" },
 	},
 })
 
