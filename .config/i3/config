@@ -205,7 +205,6 @@ exec i3-msg 'workspace 2'
 # Borders for windows
 for_window [class=".*"] border pixel 1
 for_window [class=".*"] border_radius 100
-
 # Gaps for i3bar
 for_window [class="i3bar"] gaps outer current set 10
 

@@ -62,11 +62,11 @@
     # right side of the screen.  Y is measured from the top and down respectevly.
     # The width can be negative. In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "300x5-30+20"
+    geometry = "300x5-20+37"
 
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
-    transparency = 15
+    transparency = 80
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -129,9 +129,9 @@
     browser = /usr/bin/brave-browser
 
 [frame]
-    width = 5
-    color = "#3B4252"
-    corner_radius = 180
+    width = 1
+    color = "#FFFF"
+    corner_radius = 360
 
 [shortcuts]
     # shortcuts are specified as [modifier+][modifier+]...key

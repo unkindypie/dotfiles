@@ -1,7 +1,6 @@
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
--- lvim.colorscheme = "tokyonight"
 lvim.colorscheme = "gruvbox"
 vim.o.background = "dark" -- or "light" for light mode
 
@@ -37,7 +36,6 @@ lvim.builtin.treesitter.rainbow.enable = true
 
 lvim.plugins = {
 	-- ##### Appearance #####
-	{ "folke/tokyonight.nvim" },
 	{ "catppuccin/nvim" },
 	-- { "morhetz/gruvbox" },
 	{ "ellisonleao/gruvbox.nvim" },
@@ -100,6 +98,25 @@ lvim.plugins = {
 				lastplace_open_folds = true,
 			})
 		end,
+	},
+	{
+		"samodostal/image.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
+		{ "m00qek/baleia.nvim", tag = "v1.2.0" },
+		require("image").setup({
+			render = {
+				min_padding = 5,
+				show_label = true,
+				use_dither = true,
+				foreground_color = true,
+				background_color = true,
+			},
+			events = {
+				update_on_nvim_resize = true,
+			},
+		}),
 	},
 	{
 		"windwp/nvim-spectre",
