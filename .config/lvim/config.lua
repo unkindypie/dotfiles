@@ -38,12 +38,13 @@ lvim.plugins = {
 	-- ##### Appearance #####
 	{ "catppuccin/nvim" },
 	-- { "morhetz/gruvbox" },
-	{ "ellisonleao/gruvbox.nvim" },
+	{ "ellisonleao/gruvbox.nvim", commit = "cb7a8a867cfaa7f0e8ded57eb931da88635e7007" },
 	{
 		"danilamihailov/beacon.nvim",
 	},
 	{
 		"folke/todo-comments.nvim",
+		branch = "neovim-pre-0.8.0",
 		-- event = "BufRead",
 		event = "BufEnter",
 		config = function()
@@ -55,6 +56,13 @@ lvim.plugins = {
 	},
 	-- ##### Misc #####
 	-- { "github/copilot.vim" },
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "BufRead",
+		config = function()
+			require("lsp_signature").on_attach()
+		end,
+	},
 	{
 		"zbirenbaum/copilot.lua",
 		event = "InsertEnter",
@@ -73,9 +81,9 @@ lvim.plugins = {
 	{ "zbirenbaum/copilot-cmp", after = { "copilot.lua", "nvim-cmp" } },
 	{
 		"folke/persistence.nvim",
-		-- event = "BufReadPre", -- this will only start session saving when an actual file was opened
 		event = "BufEnter",
 		module = "persistence",
+		commit = "ad7fcd4fed0cecb9ae3c6cbc4a61801ef4e2466d",
 		config = function()
 			require("persistence").setup({
 				dir = vim.fn.expand(vim.fn.stdpath("config") .. "/session/"),
@@ -137,11 +145,23 @@ lvim.plugins = {
 		"EthanJWright/vs-tasks.nvim",
 	},
 	{ "SmiteshP/nvim-gps" },
+	-- {
+	-- 	"ray-x/lsp_signature.nvim",
+	-- 	event = "BufRead",
+	-- 	config = function()
+	-- 		require("lsp_signature").on_attach()
+	-- 	end,
+	-- },
+	-- {
+	-- 	"hrsh7th/cmp-nvim-lsp-signature-help",
+	-- },
 	{ "christoomey/vim-tmux-navigator" },
+	{
+		"wakatime/vim-wakatime",
+	},
 	-- #####  Git #####
 	{
 		"sindrets/diffview.nvim",
-		-- event = "BufRead",
 	},
 	{
 		"f-person/git-blame.nvim",
@@ -149,6 +169,13 @@ lvim.plugins = {
 	{
 		"TimUntersberger/neogit",
 	},
+	-- {
+	-- 	"akinsho/git-conflict.nvim",
+	-- 	event = "BufRead",
+	-- 	config = function()
+	-- 		require("git-conflict").setup()
+	-- 	end,
+	-- },
 	-- ##### Additional lang support #####
 	{
 		"tikhomirov/vim-glsl",
@@ -215,17 +242,19 @@ formatters.setup({
 			"javascriptreact",
 			"javascript",
 			"typescript",
+			"typescriptreact",
 			"json",
 			"markdown",
 		},
 	},
 	{
-
 		command = "stylua",
 		filetypes = {
 			"lua",
 		},
 	},
+	{ exe = "black", filetypes = { "python" } },
+	{ exe = "isort", filetypes = { "python" } },
 })
 
 -- Linters configuration
@@ -238,6 +267,12 @@ linters.setup({
 			"javascript",
 			"typescript",
 			"vue",
+		},
+	},
+	{
+		command = "flake8",
+		filetypes = {
+			"python",
 		},
 	},
 	{
@@ -261,6 +296,9 @@ require("lvim.lsp.manager").setup("tsserver", opts)
 
 -- Copilot
 lvim.builtin.cmp.formatting.source_names["copilot"] = "Copilot 🤖"
+lvim.builtin.cmp.sources[#lvim.builtin.cmp.sources + 1] = {
+	name = "nvim_lsp_signature_help",
+}
 table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 
 -- Misc
