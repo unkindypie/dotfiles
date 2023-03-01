@@ -109,8 +109,25 @@ export DENO_INSTALL="/home/maxb/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export VISUAL=lvim;
 export EDITOR=lvim;
+export AWS_PROFILE=anton
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
 fi
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/maxb/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/maxb/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/maxb/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/maxb/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
 

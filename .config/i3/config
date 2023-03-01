@@ -223,3 +223,4 @@ client.background           #2f343f
 ######## Behavior ########
 focus_on_window_activation focus
 for_window [urgent=latest] focus
+for_window [title="upwork"] floating disable

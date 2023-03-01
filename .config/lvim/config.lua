@@ -2,7 +2,7 @@
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "gruvbox"
-vim.o.background = "dark" -- or "light" for light mode
+-- lvim.colorscheme = "tokyonight-day"
 
 lvim.transparent_window = true
 
@@ -11,9 +11,11 @@ lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<Space>r"] = ":Telescope buffers<cr>"
 lvim.keys.normal_mode["<Space>H"] = ":%s/<<C-r><C-w>>//g<Left><Left>"
+lvim.keys.normal_mode["H"] = "<Cmd>BufferLineCyclePrev<CR>"
+lvim.keys.normal_mode["L"] = "<Cmd>BufferLineCycleNext<CR>"
+
 -- TODO: User Config for predefined plugins
 lvim.builtin.alpha.active = true
-lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = false
 
 lvim.builtin.treesitter.ensure_installed = {
@@ -36,15 +38,33 @@ lvim.builtin.treesitter.rainbow.enable = true
 
 lvim.plugins = {
 	-- ##### Appearance #####
-	{ "catppuccin/nvim" },
-	-- { "morhetz/gruvbox" },
-	{ "ellisonleao/gruvbox.nvim", commit = "cb7a8a867cfaa7f0e8ded57eb931da88635e7007" },
+	{
+		"ellisonleao/gruvbox.nvim",
+	},
 	{
 		"danilamihailov/beacon.nvim",
 	},
 	{
+		"karb94/neoscroll.nvim",
+		event = "WinScrolled",
+		config = function()
+			require("neoscroll").setup({
+				-- All these keys will be mapped to their corresponding default scrolling animation
+				mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
+				hide_cursor = true, -- Hide cursor while scrolling
+				stop_eof = true, -- Stop at <EOF> when scrolling downwards
+				use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+				respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+				cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+				easing_function = "sine", -- Default easing function
+				pre_hook = nil, -- Function to run before the scrolling animation starts
+				post_hook = nil, -- Function to run after the scrolling animation ends
+			})
+		end,
+	},
+	{
 		"folke/todo-comments.nvim",
-		branch = "neovim-pre-0.8.0",
+		-- branch = "neovim-pre-0.8.0",
 		-- event = "BufRead",
 		event = "BufEnter",
 		config = function()
@@ -83,7 +103,6 @@ lvim.plugins = {
 		"folke/persistence.nvim",
 		event = "BufEnter",
 		module = "persistence",
-		commit = "ad7fcd4fed0cecb9ae3c6cbc4a61801ef4e2466d",
 		config = function()
 			require("persistence").setup({
 				dir = vim.fn.expand(vim.fn.stdpath("config") .. "/session/"),
@@ -107,25 +126,25 @@ lvim.plugins = {
 			})
 		end,
 	},
-	{
-		"samodostal/image.nvim",
-		requires = {
-			"nvim-lua/plenary.nvim",
-		},
-		{ "m00qek/baleia.nvim", tag = "v1.2.0" },
-		require("image").setup({
-			render = {
-				min_padding = 5,
-				show_label = true,
-				use_dither = true,
-				foreground_color = true,
-				background_color = true,
-			},
-			events = {
-				update_on_nvim_resize = true,
-			},
-		}),
-	},
+	-- {
+	--   "samodostal/image.nvim",
+	--   requires = {
+	--     "nvim-lua/plenary.nvim",
+	--   },
+	--   { "m00qek/baleia.nvim" },
+	--   require("image").setup({
+	--     render = {
+	--       min_padding = 5,
+	--       show_label = true,
+	--       use_dither = true,
+	--       foreground_color = true,
+	--       background_color = true,
+	--     },
+	--     events = {
+	--       update_on_nvim_resize = true,
+	--     },
+	--   }),
+	-- },
 	{
 		"windwp/nvim-spectre",
 		event = "BufEnter",
@@ -183,9 +202,6 @@ lvim.plugins = {
 }
 
 --- Nvim-tree configs
--- lvim.builtin.nvimtree.setup.view.auto_resize = true
--- lvim.builtin.nvimtree.setup.view.side = "left"
--- lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.nvimtree.setup.auto_reload_on_write = true
 lvim.builtin.bufferline.options.offsets = {
 	{
@@ -194,7 +210,6 @@ lvim.builtin.bufferline.options.offsets = {
 		text_align = "left",
 	},
 }
-lvim.builtin.notify.active = false
 -- Session keymaps
 lvim.builtin.which_key.mappings["S"] = {
 	name = "Session",
