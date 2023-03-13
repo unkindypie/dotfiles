@@ -16,7 +16,7 @@ lvim.keys.normal_mode["L"] = "<Cmd>BufferLineCycleNext<CR>"
 
 -- TODO: User Config for predefined plugins
 lvim.builtin.alpha.active = true
-lvim.builtin.terminal.active = false
+lvim.builtin.terminal.active = true
 
 lvim.builtin.treesitter.ensure_installed = {
 	"bash",
@@ -49,7 +49,6 @@ lvim.plugins = {
 		event = "WinScrolled",
 		config = function()
 			require("neoscroll").setup({
-				-- All these keys will be mapped to their corresponding default scrolling animation
 				mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
 				hide_cursor = true, -- Hide cursor while scrolling
 				stop_eof = true, -- Stop at <EOF> when scrolling downwards
@@ -64,8 +63,6 @@ lvim.plugins = {
 	},
 	{
 		"folke/todo-comments.nvim",
-		-- branch = "neovim-pre-0.8.0",
-		-- event = "BufRead",
 		event = "BufEnter",
 		config = function()
 			require("todo-comments").setup()
@@ -75,7 +72,6 @@ lvim.plugins = {
 		"p00f/nvim-ts-rainbow",
 	},
 	-- ##### Misc #####
-	-- { "github/copilot.vim" },
 	{
 		"ray-x/lsp_signature.nvim",
 		event = "BufRead",
@@ -85,20 +81,44 @@ lvim.plugins = {
 	},
 	{
 		"zbirenbaum/copilot.lua",
-		event = "InsertEnter",
+		event = { "VimEnter" },
 		config = function()
 			vim.defer_fn(function()
 				require("copilot").setup({
-					plugin_manager_path = get_runtime_dir() .. "/site/pack/packer",
-					cmp = {
-						enabled = true,
-						method = "getCompletionsCycling",
+					filetypes = {
+						python = true,
+						javascriptreact = true,
+						javascript = true,
+						typescript = true,
+						typescriptreact = true,
+						json = true,
+						markdown = true,
 					},
+					panel = { enabled = false },
+					suggestion = {
+						enabled = true,
+						auto_trigger = true,
+						keymap = {
+							accept = "<C-o>",
+							accept_word = false,
+							accept_line = false,
+							next = "<M-]>",
+							prev = "<M-[>",
+							dismiss = "<C-]>",
+						},
+					},
+					plugin_manager_path = get_runtime_dir() .. "/site/pack/packer",
 				})
 			end, 100)
 		end,
 	},
-	{ "zbirenbaum/copilot-cmp", after = { "copilot.lua", "nvim-cmp" } },
+	{
+		"zbirenbaum/copilot-cmp",
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+		after = { "copilot.lua", "nvim-cmp" },
+	},
 	{
 		"folke/persistence.nvim",
 		event = "BufEnter",
@@ -164,16 +184,6 @@ lvim.plugins = {
 		"EthanJWright/vs-tasks.nvim",
 	},
 	{ "SmiteshP/nvim-gps" },
-	-- {
-	-- 	"ray-x/lsp_signature.nvim",
-	-- 	event = "BufRead",
-	-- 	config = function()
-	-- 		require("lsp_signature").on_attach()
-	-- 	end,
-	-- },
-	-- {
-	-- 	"hrsh7th/cmp-nvim-lsp-signature-help",
-	-- },
 	{ "christoomey/vim-tmux-navigator" },
 	{
 		"wakatime/vim-wakatime",
@@ -199,7 +209,15 @@ lvim.plugins = {
 	{
 		"tikhomirov/vim-glsl",
 	},
+	-- #### Debugging
+	{
+		"mfussenegger/nvim-dap-python",
+	},
 }
+
+-- Copilot
+lvim.builtin.cmp.formatting.source_names["copilot"] = "Copilot 🤖"
+table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 
 --- Nvim-tree configs
 lvim.builtin.nvimtree.setup.auto_reload_on_write = true
@@ -248,7 +266,7 @@ local gps = require("nvim-gps")
 gps.setup()
 lvim.builtin.lualine.sections.lualine_c = { { gps.get_location, cond = gps.is_available } }
 
--- Formatters configuration
+-- Formatters
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
 	{
@@ -309,12 +327,45 @@ local opts = {
 
 require("lvim.lsp.manager").setup("tsserver", opts)
 
--- Copilot
-lvim.builtin.cmp.formatting.source_names["copilot"] = "Copilot 🤖"
-lvim.builtin.cmp.sources[#lvim.builtin.cmp.sources + 1] = {
-	name = "nvim_lsp_signature_help",
-}
-table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
+-- Setup dap for python
+local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/")
+pcall(function()
+	require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")
+	-- require("dap-python").setup("python")
+end)
+
+-- Supported test frameworks are unittest, pytest and django. By default it
+-- tries to detect the runner by probing for pytest.ini and manage.py, if
+-- neither are present it defaults to unittest.
+pcall(function()
+	require("dap-python").test_runner = "pytest"
+end)
+
+table.insert(require("dap").configurations.python, {
+	type = "python",
+	request = "launch",
+	name = "FastAPI module",
+	module = "uvicorn",
+	args = {
+		"app.main:app",
+		-- '--reload', -- doesn't work
+		"--use-colors",
+	},
+	pythonPath = "python",
+	console = "integratedTerminal",
+})
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "python" },
+	callback = function()
+		lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('dap-python').test_method()<cr>", "Test Method" }
+		lvim.builtin.which_key.mappings["df"] = { "<cmd>lua require('dap-python').test_class()<cr>", "Test Class" }
+		lvim.builtin.which_key.vmappings["d"] = {
+			name = "Debug",
+			s = { "<cmd>lua require('dap-python').debug_selection()<cr>", "Debug Selection" },
+		}
+	end,
+})
 
 -- Misc
 vim.cmd("highlight NonText guibg=none")
