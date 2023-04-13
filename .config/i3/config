@@ -186,8 +186,8 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 ###############  Autostart #####################
 exec_always "setxkbmap -layout us,ru"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
-# exec_always "feh --bg-fill $HOME/Pictures/wallpaper/Ilja_Jefimowitsch_Repin_-_Reply_of_the_Zaporozhian_Cossacks_-_Yorck.jpg"
-exec_always "feh --bg-fill $HOME/Pictures/wallpaper/space.png"
+# exec_always "feh --bg-fill $HOME/Pictures/wallpaper/space.png"
+exec_always "feh --bg-fill $HOME/Pictures/wallpaper/mount_fuji_wallpaper_in_mac_os_x_lion-wallpaper-1920x1080.jpg"
 exec_always "flameshot"
 # exec --no-startup-id i3-msg 'workspace 2; exec kitty --directory "Desktop/node/nosis-backend"'
 assign [class="Brave-browser"] $ws1
