@@ -74,6 +74,9 @@ lvim.plugins = {
 		end,
 	},
 	{
+		"tpope/vim-obsession",
+	},
+	{
 		"ethanholz/nvim-lastplace",
 		event = "BufRead",
 		config = function()
