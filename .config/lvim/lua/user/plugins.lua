@@ -19,6 +19,9 @@ lvim.plugins = {
 	{
 		"catppuccin/nvim",
 	},
+	{
+		"psliwka/vim-smoothie",
+	},
 	-- ##### Misc #####
 	{
 		"ray-x/lsp_signature.nvim",

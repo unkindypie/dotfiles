@@ -1,5 +1,5 @@
 [global]
-    font = Monaco 10
+    font = Monaco 12
     
     mouse_left_click = do_action
     mouse_middle_click = context
@@ -66,7 +66,7 @@
 
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
-    transparency = 80
+    transparency = 35
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.

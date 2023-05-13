@@ -116,8 +116,8 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
 fi
 
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
 # __conda_setup="$('/home/maxb/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 # if [ $? -eq 0 ]; then
 #     eval "$__conda_setup"
@@ -129,5 +129,5 @@ fi
 #     fi
 # fi
 # unset __conda_setup
-# <<< conda initialize <<<
+# # <<< conda initialize <<<
 
