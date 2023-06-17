@@ -10,6 +10,7 @@ lvim.transparent_window = true
 -- TODO: User Config for predefined plugins
 lvim.builtin.alpha.active = true
 lvim.builtin.terminal.active = true
+lvim.builtin.project.exclude_dirs = { "*/packages/*", "*/apps/*" }
 
 reload("user.keymaps")
 
@@ -36,6 +37,8 @@ reload("user.plugins")
 -- Copilot
 lvim.builtin.cmp.formatting.source_names["copilot"] = "Copilot 🤖"
 table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
+
+-- lvim.builtin.cmp.formatting.format = require("tailwindcss-colorizer-cmp").formatter
 
 --- Nvim-tree configs
 lvim.builtin.nvimtree.setup.auto_reload_on_write = true
@@ -77,7 +80,8 @@ formatters.setup({
 local linters = require("lvim.lsp.null-ls.linters")
 linters.setup({
 	{
-		exe = "eslint_d",
+		-- exe = "eslint_d",
+		exe = "eslint",
 		filetypes = {
 			"javascriptreact",
 			"javascript",

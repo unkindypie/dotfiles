@@ -188,6 +188,7 @@ exec_always "setxkbmap -layout us,ru"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
 exec_always "feh --bg-fill --force-aliasing $HOME/Pictures/wallpaper/gruvbox3.png"
 exec_always "flameshot"
+exec --no-startup-id "google-drive-ocamlfuse ~/google-drive"
 # exec --no-startup-id i3-msg 'workspace 2; exec kitty --directory "Desktop/node/nosis-backend"'
 assign [class="Brave-browser"] $ws1
 exec "brave-browser"

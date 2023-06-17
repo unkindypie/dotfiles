@@ -68,7 +68,8 @@ lvim.plugins = {
 	{
 		"folke/persistence.nvim",
 		event = "BufEnter",
-		module = "persistence",
+		-- module = "persistence",
+		lazy = true,
 		config = function()
 			require("persistence").setup({
 				dir = vim.fn.expand(vim.fn.stdpath("config") .. "/session/"),
@@ -135,6 +136,16 @@ lvim.plugins = {
 		config = function()
 			require("vstask").setup({
 				terminal = "toggleterm",
+				term_opts = {
+					vertical = {
+						direction = "vertical",
+						size = "55",
+					},
+					horizontal = {
+						direction = "horizontal",
+						size = "55",
+					},
+				},
 			})
 		end,
 	},
@@ -142,6 +153,14 @@ lvim.plugins = {
 	{
 		"wakatime/vim-wakatime",
 	},
+	-- {
+	-- 	"roobert/tailwindcss-colorizer-cmp.nvim",
+	-- 	config = function()
+	-- 		require("tailwindcss-colorizer-cmp").setup({
+	-- 			color_square_width = 3,
+	-- 		})
+	-- 	end,
+	-- },
 	-- #####  Git #####
 	{
 		"sindrets/diffview.nvim",

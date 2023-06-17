@@ -1,3 +1,6 @@
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
+require("lvim.lsp.manager").setup("pyright")
+
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
 	return
